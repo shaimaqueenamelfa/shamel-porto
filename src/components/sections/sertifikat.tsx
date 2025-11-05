@@ -42,7 +42,7 @@ export default function SertifikatPage() {
   return (
     <section
       id="certificate"
-      className="flex flex-col items-center justify-center min-h-screen py-20 px-6 bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+      className="flex flex-col items-center justify-center  py-16 px-6 bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
       {/* === TEXT SECTION === */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
@@ -65,7 +65,7 @@ export default function SertifikatPage() {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="w-full flex justify-center">
+        className="w-full flex justify-center max-w-3xl mx-auto ">
         <Carousel
           items={certificates.map((cert) => ({
             id: cert.id,

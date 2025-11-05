@@ -14,7 +14,7 @@ export default function HomePage() {
       </section>
 
       {/* Section About */}
-      <section id="ab" className="py-6">
+      <section id="ab" className="">
         <Ab />
       </section>
 

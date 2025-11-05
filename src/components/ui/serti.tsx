@@ -35,26 +35,22 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     title: "Text Animations",
     description: "Cool text animations for your projects.",
     id: 1,
-    image: "/images/sertifikat1.jpeg",
-    // icon: <FiFileText className="h-[16px] w-[16px] text-white" />
+    image: "/images/sertifikat1.jpeg", // icon: <FiFileText className="h-[16px] w-[16px] text-white" />
   },
   {
     title: "Animations",
     description: "Smooth animations for your projects.",
-    id: 2,
-    // icon: <FiCircle className="h-[16px] w-[16px] text-white" />
+    id: 2, // icon: <FiCircle className="h-[16px] w-[16px] text-white" />
   },
   {
     title: "Components",
     description: "Reusable components for your projects.",
-    id: 3,
-    // icon: <FiLayers className="h-[16px] w-[16px] text-white" />
+    id: 3, // icon: <FiLayers className="h-[16px] w-[16px] text-white" />
   },
   {
     title: "Backgrounds",
     description: "Beautiful backgrounds and patterns for your projects.",
-    id: 4,
-    // icon: <FiLayout className="h-[16px] w-[16px] text-white" />
+    id: 4, // icon: <FiLayout className="h-[16px] w-[16px] text-white" />
   },
 ];
 
@@ -72,8 +68,25 @@ export default function Carousel({
   loop = false,
   round = false,
 }: CarouselProps): JSX.Element {
-  const containerPadding = 16;
-  const itemWidth = baseWidth - containerPadding * 2;
+  const containerRef = useRef<HTMLDivElement>(null); // 🆕 PERUBAHAN 1: State untuk melacak lebar kontainer aktual
+  const [containerWidth, setContainerWidth] = useState(baseWidth); // 🆕 PERUBAHAN 2: useEffect untuk mendengarkan perubahan ukuran layar dan mendapatkan lebar
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        // Mengambil lebar aktual kontainer saat ini
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth(); // Set lebar awal
+    window.addEventListener("resize", updateWidth);
+
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const containerPadding = 16; // ✅ PERUBAHAN 3: itemWidth sekarang dihitung berdasarkan lebar kontainer dinamis (containerWidth)
+  const itemWidth = containerWidth - containerPadding * 2;
   const trackItemOffset = itemWidth + GAP;
 
   const carouselItems = loop ? [...items, items[0]] : items;
@@ -82,7 +95,6 @@ export default function Carousel({
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isResetting, setIsResetting] = useState<boolean>(false);
 
-  const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
       const container = containerRef.current;
@@ -165,23 +177,22 @@ export default function Carousel({
 
   return (
     <div
-      ref={containerRef}
-      className={`relative overflow-hidden ${
+      ref={containerRef} // ✅ PERUBAHAN 4: Ubah w-[baseWidth]px menjadi w-full, dan gunakan baseWidth sebagai max-width
+      className={`relative overflow-hidden w-full max-w-[${baseWidth}px] mx-auto ${
         round
           ? "rounded-full border border-white"
           : "rounded-[24px] border border-[#222]"
-      }`}
+      }`} // ❌ Hapus style={{ width: `${baseWidth}px` }}
       style={{
-        width: `${baseWidth}px`,
         ...(round && { height: `${baseWidth}px` }),
       }}>
-           {" "}
+                       {" "}
       <motion.div
         className="flex"
         drag="x"
         {...dragProps}
         style={{
-          height: "350px",
+          height: "350px", // Lebar itemWidth sekarang otomatis dihitung ulang
           width: itemWidth,
           gap: `${GAP}px`,
           perspective: 1000,
@@ -194,7 +205,7 @@ export default function Carousel({
         animate={{ x: -(currentIndex * trackItemOffset) }}
         transition={effectiveTransition}
         onAnimationComplete={handleAnimationComplete}>
-               {" "}
+                               {" "}
         {carouselItems.map((item, index) => {
           const range = [
             -(index + 1) * trackItemOffset,
@@ -226,11 +237,12 @@ export default function Carousel({
                   className="absolute top-0 left-0 w-full h-full object-cover"
                 />
               )}
-              {/* 2. Menampilkan Icon/Placeholder jika tidak ada gambar */}
+              {/* 2. Menampilkan Icon/Placeholder jika tidak ada gambar */}     
+                     {" "}
               {!item.image && (
                 <div className={`${round ? "p-0 m-0" : "mb-4 p-5"}`}>
                   <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
-                    {item.icon}
+                                        {item.icon}
                   </span>
                 </div>
               )}
@@ -241,23 +253,18 @@ export default function Carousel({
                   {item.title}
                 </div>
                 <p className="text-xs text-white opacity-90">
-                  {item.description}
+                  {item.description} 
                 </p>
               </div>
-                         {" "}
             </motion.div>
           );
         })}
-             {" "}
       </motion.div>
-           {" "}
       <div
         className={`flex w-full justify-center ${
           round ? "absolute z-20 bottom-12 left-1/2 -translate-x-1/2" : ""
         }`}>
-               {" "}
         <div className="mt-4 flex w-[150px] justify-between px-8">
-                   {" "}
           {items.map((_, index) => (
             <motion.div
               key={index}
@@ -277,11 +284,8 @@ export default function Carousel({
               transition={{ duration: 0.15 }}
             />
           ))}
-                 {" "}
         </div>
-             {" "}
       </div>
-         {" "}
     </div>
   );
 }

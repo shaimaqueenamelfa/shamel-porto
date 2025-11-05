@@ -3,8 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Layers, Server, Database, Settings, Sun, Moon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Layers, Server, Database, Settings } from "lucide-react";
 
 const skills = [
   {
@@ -36,9 +35,7 @@ const skills = [
 const containerVariants = {
   hidden: {},
   show: {
-    transition: {
-      staggerChildren: 0.08,
-    },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
@@ -55,7 +52,6 @@ export default function Skills() {
   );
 
   useEffect(() => {
-    // Sinkronkan awal (mis. jika server-rendered)
     if (isDark) {
       document.documentElement.classList.add("dark");
     } else {
@@ -63,21 +59,19 @@ export default function Skills() {
     }
   }, [isDark]);
 
-  const toggleTheme = () => setIsDark((v) => !v);
-
   return (
     <section className="w-full py-12 px-4 sm:px-6 lg:px-8" id="skill">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="flex items-start justify-between gap-4 mb-8">
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 text-center sm:text-left">
+          <div className="flex-1">
             <p className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400">
               Skills
             </p>
-            <h2 className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-black dark:text-white">
+            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black dark:text-white">
               Tech I work with
             </h2>
-            <p className="mt-4 max-w-3xl text-base sm:text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto sm:mx-0">
               A balanced stack across frontend, backend, database, and tooling —
               used in real-world projects and teaching material.
             </p>
@@ -90,17 +84,16 @@ export default function Skills() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
           {skills.map((s) => (
             <motion.article
               key={s.id}
               variants={cardVariant}
               className="rounded-2xl border border-gray-200/40 bg-white shadow-sm p-6
-                dark:bg-gray-900 dark:border-gray-700 transition-shadow duration-200"
-              // hover effect: slight lift + scale
+                dark:bg-gray-900 dark:border-gray-700 transition-shadow duration-200
+                hover:shadow-lg"
               whileHover={{ y: -6, scale: 1.02 }}
-              whileTap={{ scale: 0.995 }}
-              role="group">
+              whileTap={{ scale: 0.995 }}>
               <div className="flex items-center gap-3">
                 <div
                   className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-green-600/10 text-green-400
@@ -113,7 +106,7 @@ export default function Skills() {
                 </h3>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-2 sm:gap-3">
                 {s.tags.map((tag) => (
                   <span
                     key={tag}
