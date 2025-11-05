@@ -356,12 +356,13 @@ export function ProjectsGrid() {
                 {project.language && (
                   <div className="flex items-center gap-2">
                     <div
-                      className={`h-2 w-2 rounded-full bg-[${getLanguageColor(
-                        project.language
-                      )}]`}
+                      className="h-3 w-3 rounded-full"
+                      style={{
+                        backgroundColor: getLanguageColor(project.language),
+                      }}
                     />
-                    <span className="text-xs text-muted-foreground">
-                      {project.language}
+                    <span className="text-sm text-muted-foreground">
+                                            {project.language}                 
                     </span>
                   </div>
                 )}
