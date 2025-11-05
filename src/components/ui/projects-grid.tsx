@@ -362,7 +362,15 @@ export function ProjectsGrid() {
                       }}
                     />
                     <span className="text-sm text-muted-foreground">
-                                            {project.language}                 
+                      {project.language}                 
+                    </span>
+                    {/* className={`h-2 w-2 rounded-full bg-[${getLanguageColor(
+                        project.language
+                      )}]`}
+                    /> */}
+
+                    <span className="text-xs text-muted-foreground">
+                      {project.language}
                     </span>
                   </div>
                 )}
