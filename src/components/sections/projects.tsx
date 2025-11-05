@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Github, Code2 } from "lucide-react";
-import { ProjectsGrid } from "../ui/projects-grid";
 import { ProjectsWrapper } from "../ui/projects-wrapper";
+// Import the wrapper component
 
 export function Projects() {
   return (
@@ -37,7 +37,7 @@ export function Projects() {
         </p>
       </motion.div>
 
-      {/* Projects Section - Menggunakan ProjectsWrapper di luar div lain untuk fleksibilitas */}
+      {/* Projects Section - Renders ProjectsWrapper */}
       <ProjectsWrapper />
 
       {/* Footer Info Section - Menggunakan padding atas yang lebih jelas */}

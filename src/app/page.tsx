@@ -4,6 +4,7 @@ import Skills from "@/components/sections/skill";
 import Ab from "@/components/sections/ab";
 
 import SertifikatPage from "@/components/sections/sertifikat";
+import { Footer } from "@/components/sections/footer";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,10 @@ export default function HomePage() {
       {/* Section Projects */}
       <section id="proyek" className="py-20">
         <Projects />
+      </section>
+
+      <section>
+        <Footer />
       </section>
     </main>
   );
