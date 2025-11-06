@@ -42,7 +42,7 @@ export default function SertifikatPage() {
   return (
     <section
       id="certificate"
-      className="flex flex-col items-center justify-center  py-16 px-6 bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+      className="flex flex-col items-center justify-center  py-16 px-6 bg-background text-foreground transition-colors duration-300">
       {/* === TEXT SECTION === */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
@@ -53,7 +53,7 @@ export default function SertifikatPage() {
         <h2 className="text-4xl sm:text-5xl font-extrabold  tracking-tight">
           My Certificates
         </h2>
-        <p className="mt-4 text-lg sm:text-xl text-gray-600 leading-relaxed">
+        <p className="mt-4 text-lg sm:text-xl text-foreground leading-relaxed">
           A curated collection of my achievements, certifications, and skill
           recognition throughout my learning journey.
         </p>

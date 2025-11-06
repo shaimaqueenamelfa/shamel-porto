@@ -26,7 +26,7 @@ export function Projects() {
         </Badge>
         <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl mb-6 leading-tight">
           My{" "}
-          <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <span className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl mb-6 leading-tight">
             Projects
           </span>
         </h1>

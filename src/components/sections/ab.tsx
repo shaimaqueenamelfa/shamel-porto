@@ -10,7 +10,7 @@ export function Ab() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="w-full min-h-screen flex items-center justify-center relative overflow-hidden z-10 bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+      className="w-full min-h-screen flex items-center justify-center relative overflow-hidden z-10 bg-background text-foreground transition-colors  duration-300">
       <div className="w-full min-h-screen flex items-center justify-center relative overflow-hidden z-10 px-8 sm:px-12 lg:px-20">
         {/* Grid utama responsif */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
@@ -37,16 +37,16 @@ export function Ab() {
             className="flex flex-col justify-center space-y-6 text-center lg:text-left">
             {/* Judul */}
             <div className="space-y-2">
-              <p className="uppercase tracking-widest text-sm text-gray-500 dark:text-gray-400">
+              <p className="uppercase tracking-widest text-sm text-foreground">
                 About
               </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-black dark:text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
                 Building the next wave of{" "}
                 <span className="text-green-500 dark:text-green-400">
                   developers
                 </span>
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-foreground text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 I'm Shaima Queena Melfa — a 12th-grade student at SMK
                 Informatika Pesat, majoring in Software Engineering (RPL). I
                 specialize in front-end development, creating modern and

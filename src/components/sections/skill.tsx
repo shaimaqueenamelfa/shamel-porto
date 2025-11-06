@@ -1,7 +1,6 @@
-// components/SkillsSection.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Layers, Server, Database, Settings } from "lucide-react";
 
@@ -34,9 +33,7 @@ const skills = [
 
 const containerVariants = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08 },
-  },
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
 const cardVariant = {
@@ -45,33 +42,19 @@ const cardVariant = {
 };
 
 export default function Skills() {
-  const [isDark, setIsDark] = useState<boolean>(() =>
-    typeof window !== "undefined"
-      ? document.documentElement.classList.contains("dark")
-      : false
-  );
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
-
   return (
     <section className="w-full py-12 px-4 sm:px-6 lg:px-8" id="skill">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 text-center sm:text-left">
           <div className="flex-1">
-            <p className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400">
+            <p className="text-sm uppercase tracking-widest text-muted-foreground">
               Skills
             </p>
-            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-black dark:text-white">
+            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-foreground">
               Tech I work with
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto sm:mx-0">
+            <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto sm:mx-0">
               A balanced stack across frontend, backend, database, and tooling —
               used in real-world projects and teaching material.
             </p>
@@ -89,19 +72,16 @@ export default function Skills() {
             <motion.article
               key={s.id}
               variants={cardVariant}
-              className="rounded-2xl border border-gray-200/40 bg-white shadow-sm p-6
-                dark:bg-gray-900 dark:border-gray-700 transition-shadow duration-200
-                hover:shadow-lg"
-              whileHover={{ y: -6, scale: 1.02 }}
-              whileTap={{ scale: 0.995 }}>
+              className="rounded-2xl border border-border bg-card text-card-foreground shadow-sm p-6
+                transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
               <div className="flex items-center gap-3">
                 <div
-                  className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-green-600/10 text-green-400
-                    dark:bg-green-400/10"
+                  className="inline-flex items-center justify-center h-10 w-10 rounded-lg 
+                    bg-green-600/10 text-green-600 dark:text-green-400 dark:bg-green-400/10"
                   aria-hidden>
                   {s.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-black dark:text-white">
+                <h3 className="text-lg font-semibold text-foreground">
                   {s.title}
                 </h3>
               </div>
@@ -110,9 +90,8 @@ export default function Skills() {
                 {s.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium
-                      text-gray-700 bg-gray-50 border-gray-200/60
-                      dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 transition">
+                    className="inline-flex items-center gap-2 rounded-full border border-border
+                      bg-muted text-foreground px-3 py-1 text-sm font-medium transition-colors">
                     {tag}
                   </span>
                 ))}
